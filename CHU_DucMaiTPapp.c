@@ -20,13 +20,13 @@ typedef struct Node NODE;
 
 typedef NODE* TREE;
 
-//Comparer 2 donnÈes
+//Comparer 2 donn√©es
 int Compare(Mb x, Mb y)
 {
     return strcmp(x.id, y.id);
 }
 
-//La fonction permet d'entrez des donnÈes
+//La fonction permet d'entrez des donn√©es
 Mb inputItem()
 {
     Mb x;
@@ -38,7 +38,7 @@ Mb inputItem()
     }
     printf("\nEntrez le nom du membre: ");
     gets(x.nom);
-    printf("\nEntrez le prÈnom du membre :");
+    printf("\nEntrez le pr√©nom du membre :");
     gets(x.prenom);
     printf("\nEntrez l'age du membre: ");
     scanf("%d",&x.age);
@@ -48,13 +48,13 @@ Mb inputItem()
 
 }
 
-//la fonction permet d'afficher des donnÈes d'un membre.
+//la fonction permet d'afficher des donn√©es d'un membre.
 void outItem(Mb x)
 {
     prinf("\n%d %s %-30s %d", x.id, x.nom, x.prenom, x.age);
 }
 
-//la fonction permet d'afficher les informations dans l'ordre des clÈs croissantes;
+//la fonction permet d'afficher les informations dans l'ordre des cl√©s croissantes;
 void LNR(TREE t) {
     if (t != NULL) {
         LNR(t->Left);
@@ -63,7 +63,7 @@ void LNR(TREE t) {
     }
 }
 
-//La fonction permet de insÈrer une node x dans l'arbre binaire.
+//La fonction permet de ins√©rer une node x dans l'arbre binaire.
 void InsertNode(TREE &t, Mb x)
 {
     if(t!=NULL){
@@ -82,12 +82,12 @@ void InsertNode(TREE &t, Mb x)
     return 1;
 }
 
-//CrÈer 1 arbre
+//Cr√©er 1 arbre
 void creerArbre(TREE &t)
 {
     Mb x;
     while (1){
-        printf("-- Entrez les donnÈes du membre --");
+        printf("-- Entrez les donn√©es du membre --");
         x=inputItem();
         if(strcmp(x.id, "q")==0 || strcmp(x.id,"Q")==0)
             break;
@@ -95,14 +95,14 @@ void creerArbre(TREE &t)
         if(check ==-1)
             printf("Le membre n'existe pas!");
         else if(check==0)
-            printf("MÈmoire pleine");
+            printf("M√©moire pleine");
         else printf("--Succes--\n");
     }
 }
 
 
 
-//La fonction permet de rechercher les informations correspondant ‡ une clÈ donnÈe.
+//La fonction permet de rechercher les informations correspondant √† une cl√© donn√©e.
 TREE rechercher(TREE t, int id)
 {
     NODE *P=t;
@@ -119,7 +119,7 @@ TREE rechercher(TREE t, int id)
 }
 
 
-//La fonction permet de supprimer les donnÈes du membre x;
+//La fonction permet de supprimer les donn√©es du membre x;
 int supprimer(TREE &t, Mb x)
 {
     if(t==NULL)
@@ -132,13 +132,13 @@ int supprimer(TREE &t, Mb x)
     {
         NODE *p=t;
         if(t->Left==NULL)
-            t=t->Right; //si node n'a qu'un sous-arbre ‡ droit.
+            t=t->Right; //si node n'a qu'un sous-arbre √† droit.
         else if(t->Right ==NULL)
-            t=t->Left; // si node n'a qu'un sous-arbre ‡ gauche.
+            t=t->Left; // si node n'a qu'un sous-arbre √† gauche.
         else //si node a tous les deux .
         {
             NODE *s=t, *q=s->Left;
-            //lorsque s est le parent de q, q est le núud le plus ‡ droite du sous-arbre gauche de p.
+            //lorsque s est le parent de q, q est le n≈ìud le plus √† droite du sous-arbre gauche de p.
             while (q->Right !=NULL)
             {
                 s=q;
@@ -152,7 +152,7 @@ int supprimer(TREE &t, Mb x)
     return 1;
 }
 
-//La fonction permet de Ècrire des donnÈes dans la file txt.
+//La fonction permet de √©crire des donn√©es dans la file txt.
 void  writeFile(char *filename, TREE &t)
 {
 	if (t != NULL)
@@ -169,7 +169,7 @@ void  writeFile(char *filename, TREE &t)
 	}
 }
 
-//La fonction permet de lecture des donnÈes ‡ partir d'un file txt.
+//La fonction permet de lecture des donn√©es √† partir d'un file txt.
 void readFile(char *filename, TREE &t)
 {
 	Mb x;
@@ -201,24 +201,24 @@ void Menu(TREE &t){
     char *f="BST.txt";
     while(true){
         printf("\n-------------------MENU-------------------");
-        printf("\n1. Afficher dans l'ordre des clÈs croissants");
+        printf("\n1. Afficher dans l'ordre des cl√©s croissants");
         printf("\n2.Rechercher");
         printf("\n3.Ajouter");
         printf("\n4.Supprimer");
-        printf("\n5.Enregistrer des donnÈes")
+        printf("\n5.Enregistrer des donn√©es")
         printf("\n0. Finir!!");
         int choix;
         printf("\nQu'est ce que vous voulez faire ?");
         scanf("%d", &choix);
         if(choix>5 || choix<0){
-            printf("\nSÈlection non valide. ");
+            printf("\nS√©lection non valide. ");
         }
         else if(choix==1){
             char f;
-            printf("\n--Afficher dans l'ordre des clÈs croissants-- ")
+            printf("\n--Afficher dans l'ordre des cl√©s croissants-- ")
             LNR(t);
             printf("------------------------------------------------");
-            printf("\n r.Retourner ‡ Menu");
+            printf("\n r.Retourner √† Menu");
             scanf("%s",&f);
             if(f=='r' || f=='R')
                 goto Menu;
@@ -229,7 +229,7 @@ void Menu(TREE &t){
             scanf("%d",&id);
             TREE P=rechercher(P,id);
             if(P!=0){
-               printf("----------TrouvÈ le membre %d----------", id);
+               printf("----------Trouv√© le membre %d----------", id);
                outItem(P->data);
             }
             else {
@@ -254,12 +254,12 @@ void Menu(TREE &t){
                 while(del)
                 {
                     if(P!=NULL){
-                        printf("Suppression rÈussie!");
+                        printf("Suppression r√©ussie!");
                         del=supprimer(t, P->data.id);
                     }
                     else
                     {
-                        printf("Pas de donnÈes.");
+                        printf("Pas de donn√©es.");
                         del=0;
                     }
                 }
@@ -269,7 +269,7 @@ void Menu(TREE &t){
         }
         else if (choix==5){
             writeFile(f, t);
-            printf("DÈj‡ enregistrer des donnÈes.");
+            printf("D√©j√† enregistrer des donn√©es.");
             getch();
             goto Menu;
         }
@@ -282,7 +282,7 @@ void Menu(TREE &t){
 int main(){
     TREE t;
     t=NULL;
-    char *f="BST.txt";
+    char *f="C:\\L1_LangageC\\TPLangageC\\TP_BST_CHU_DucMai\\BST.txt";
     printf("---------------Programme de gestion des membres---------------");
     readFile(f, t);
     Menu(t);
